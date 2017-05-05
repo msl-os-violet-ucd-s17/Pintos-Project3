@@ -132,6 +132,14 @@ syscall_handler (struct intr_frame *f UNUSED)
       release_filesys_lock();
       break;
 
+    case SYS_MMAP:
+	exit_process(-1);
+      break;
+
+    case SYS_MUNMAP:
+	exit_process(-1);
+      break;
+
     case SYS_READ:
       // READ A FILE
       check_ptr(user_ptr + 7);
@@ -173,7 +181,7 @@ syscall_handler (struct intr_frame *f UNUSED)
 
       if(*(user_ptr + 5) == 1)
       {
-        // WRITE THE NUMBER OF CHARACTERS IN THE BUFFER TO THE CONSOL
+        // WRITE THE NUMBER OF CHARACTERS IN THE BUFFER TO THE CONSOLE
         putbuf(*(user_ptr + 6), *(user_ptr + 7));
         f->eax = *(user_ptr + 7);
       }
