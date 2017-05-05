@@ -1,0 +1,11 @@
+FAIL
+Kernel panic in run: PANIC at ../../threads/synch.c:197 in lock_acquire(): assertion `!lock_held_by_current_thread (lock)' failed.
+Call stack: 0xc00278fe 0x804a0aa
+Translation of call stack:
+In kernel.o:
+0xc00278fe: debug_panic (.../../lib/kernel/debug.c:38)
+In tests/vm/pt-write-code2:
+0x0804a0aa: write (...../lib/user/syscall.c:123)
+Translations of user virtual addresses above are based on a guess at
+the binary to use.  If this guess is incorrect, then those
+translations will be misleading.
